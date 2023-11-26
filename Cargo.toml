@@ -1,0 +1,18 @@
+[package]
+name = "al-sudoku"
+version = "1.0.0"
+authors = ["Anton Ladan <102412343+AL-Man64@users.noreply.github.com>"]
+edition = "2021"
+description = "Sudoku WebAssembly library for creating, manipulating and solving sudoku games"
+repository = "https://github.com/AL-Man64/al-sudoku"
+license = "AGPL-3.0-or-later"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = { version = "0.2.84", features = ["serde-serialize"] }
+js-sys = "0.3.65"
+
+[profile.release]
+opt-level = "s"
