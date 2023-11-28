@@ -1,9 +1,5 @@
 use js_sys::Array;
-use wasm_bindgen::{
-    convert::{FromWasmAbi, IntoWasmAbi},
-    prelude::*,
-    throw_str,
-};
+use wasm_bindgen::{prelude::*, throw_str};
 
 /// The Sudoku object.
 ///
@@ -28,18 +24,16 @@ impl Sudoku {
     /// The elements are ordered from left to right, and from top to
     /// bottom in terms of the sudoku field.
     #[wasm_bindgen(constructor)]
-    pub fn constructor(input: &JsValue) -> Sudoku {
+    pub fn constructor(input: Array) -> Sudoku {
         // Initialization of the sudoku variable that will be returned out
         // of the constructor
         let mut sudoku = Sudoku { fields: [0; 81] };
 
-        if !input.is_array() {
-            throw_str("`input` must be an Array of length 81, but it's not an Array");
-        }
-        let input = input.into_abi();
-        // Safety: the input was previously checked to be an array and
-        // converted into ABI
-        let input = unsafe { Array::from_abi(input) };
+        // So in the previous iteration of this code, in a strike of my
+        // own brilliance, I made the decision to spend at least an hour
+        // trying to figure out how to convert a JsValue into an Array,
+        // while trying to avoid any deprecated functions, and not once
+        // have I thought about having the Array be a function parameter.
 
         // Iterates over the input array, converting it into a Vec<u8>
         let input = input
@@ -82,7 +76,7 @@ impl Sudoku {
     }
 }
 
-/// Private functions of the Sudoku object, not exposed to javascript.
+/// Functions of the Sudoku object not exposed to javascript.
 impl Sudoku {
     /// Checks the validity of a single field in the sudoku game
     /// represented by this object, returns *true* if valid or *false*
