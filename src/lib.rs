@@ -35,6 +35,8 @@ impl Sudoku {
         // while trying to avoid any deprecated functions, and not once
         // have I thought about having the Array be a function parameter.
 
+        // I don't know man... Sounds like a skill issue to me
+
         // Iterates over the input array, converting it into a Vec<u8>
         let input = input
             .into_iter()
