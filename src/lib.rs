@@ -37,6 +37,9 @@ impl Sudoku {
 
         // I don't know man... Sounds like a skill issue to me
 
+        // Oh, by all means, let's childishly make fun of myself, because
+        // that's all you can do....
+
         // Iterates over the input array, converting it into a Vec<u8>
         let input = input
             .into_iter()
@@ -48,10 +51,12 @@ impl Sudoku {
         }
 
         for (i, field) in input.iter().enumerate() {
+            if !(1..=9).contains(field) {
+                throw_str("Illegal value for a field, must be between 1 and 9");
+            }
             sudoku.fields[i] = *field;
         }
 
-        // Returns the, now filled in, Sudoku object.
         sudoku
     }
 
