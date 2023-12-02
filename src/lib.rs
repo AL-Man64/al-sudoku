@@ -40,6 +40,9 @@ impl Sudoku {
         // Oh, by all means, let's childishly make fun of myself, because
         // that's all you can do....
 
+        // Seems like you also forgot to check the user's input as well,
+        // cope harder my dude 🤣
+
         // Iterates over the input array, converting it into a Vec<u8>
         let input = input
             .into_iter()
